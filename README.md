@@ -22,8 +22,8 @@ Repositório para a implementação do desafio 01 do programa 'if black then cod
   
   A avaliação será feita a partir da **documentação da aplicação**.\
   EndPoints - Estoque
-  1. Model/ModelDAO/ProdutoDAO/cadastrarProduto
-  2. Model/ModelDAO/ProdutoDAO/atualizarProduto
-  3. Model/ModelDAO/ProdutoDAO/listarProduto
-  4. Model/ModelDAO/ProdutoDAO/deletarProduto
-  5. Model/ModelDAO/ProdutoDAO/buscarProdutoIdNome
+  1. src/Model/ModelDAO/ProdutoDAO/cadastrarProduto
+  2. src/Model/ModelDAO/ProdutoDAO/atualizarProduto
+  3. src/Model/ModelDAO/ProdutoDAO/listarProduto
+  4. src/Model/ModelDAO/ProdutoDAO/deletarProduto
+  5. src/Model/ModelDAO/ProdutoDAO/buscarProdutoIdNome
