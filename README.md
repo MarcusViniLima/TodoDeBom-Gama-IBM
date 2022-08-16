@@ -20,7 +20,7 @@ Repositório para a implementação do desafio 01 do programa 'if black then cod
   c. Listar os endpoints no README.md\
   d. Testes automatizados, podem ser testes unitários ou testes de integração;
   
-  A avaliação será feita a partir da **documentação da aplicação**.
+  A avaliação será feita a partir da **documentação da aplicação**.\
   EndPoints - Estoque
   1. Model/ModelDAO/ProdutoDAO/cadastrarProduto
   2. Model/ModelDAO/ProdutoDAO/atualizarProduto
