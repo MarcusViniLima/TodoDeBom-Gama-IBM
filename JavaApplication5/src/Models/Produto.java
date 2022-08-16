@@ -16,8 +16,8 @@ public class Produto {
     private String marcaProduto; 
     private double valorProduto;
     private int quantidadeProduto;
-    private String flag_medicamento;
-    private String flag_generico;
+    private boolean flag_medicamento;
+    private boolean flag_generico;
 
     public Produto() {
     }
@@ -62,19 +62,19 @@ public class Produto {
         this.quantidadeProduto = quantidadeProduto;
     }
 
-    public String getFlag_medicamento() {
-        return flag_medicamento;
+    public boolean getFlag_medicamento() {
+        return flag_medicamento = false;
     }
 
-    public void setFlag_medicamento(String flag_medicamento) {
+    public void setFlag_medicamento(boolean flag_medicamento) {
         this.flag_medicamento = flag_medicamento;
     }
 
-    public String getFlag_generico() {
-        return flag_generico;
+    public boolean getFlag_generico() {
+        return flag_generico = false;
     }
 
-    public void setFlag_generico(String flag_generico) {
+    public void setFlag_generico(boolean flag_generico) {
         this.flag_generico = flag_generico;
     }
     

@@ -15,13 +15,13 @@ import javax.swing.JOptionPane;
  * @author marcu
  */
 public class BancoDAO {
+    
     public Connection conectaBD(){
         Connection conn = null;
         try { 
-            String usuario = "root";
-            String senha = "1234";
-            String url = "jdbc:mysql://localhost:3306/ibmgama?autoReconnect=true&useSSL=false";
-            conn = DriverManager.getConnection(url, usuario, senha);
+            
+            String url = "jdbc:mysql://localhost:3306/ibmgama?user=root&password=?serverTimezone=UTC&allowPublicKeyRetrieval=TRUE&useSSL=FALSE";
+            conn = DriverManager.getConnection(url);
         } catch (SQLException erro) {
             JOptionPane.showMessageDialog(null,"BancoDAO"+ erro.getMessage());
         }

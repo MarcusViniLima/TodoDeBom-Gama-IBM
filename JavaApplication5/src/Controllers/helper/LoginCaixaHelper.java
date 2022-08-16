@@ -23,7 +23,7 @@ public class LoginCaixaHelper {
     
     public Caixa obterModelo(){
         String nome = view.getjTextField1EmailCaixa().getText();
-        String senha = view.getjTextField2SenhaCaixa().getText();
+        String senha = view.getjPasswordField1SenhaCaixa().getSelectedText();
         Caixa modelo = new Caixa();
         modelo.setEmailCaixa(nome);
         modelo.setSenhaCaixa(senha);

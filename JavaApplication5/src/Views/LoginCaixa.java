@@ -6,6 +6,7 @@
 package Views;
 
 import Controllers.LoginCaixaController;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 /**
@@ -37,9 +38,9 @@ public class LoginCaixa extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        jPasswordField1SenhaCaixa = new javax.swing.JPasswordField();
         jTextField1EmailCaixa = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jTextField2SenhaCaixa = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
@@ -63,6 +64,7 @@ public class LoginCaixa extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Usuário");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 100, -1, -1));
+        getContentPane().add(jPasswordField1SenhaCaixa, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 200, 200, 30));
 
         jTextField1EmailCaixa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -75,7 +77,6 @@ public class LoginCaixa extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Senha");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 170, 60, -1));
-        getContentPane().add(jTextField2SenhaCaixa, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 200, 200, 33));
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
@@ -156,8 +157,8 @@ public class LoginCaixa extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JPasswordField jPasswordField1SenhaCaixa;
     private javax.swing.JTextField jTextField1EmailCaixa;
-    private javax.swing.JTextField jTextField2SenhaCaixa;
     // End of variables declaration//GEN-END:variables
 
     public JTextField getjTextField1EmailCaixa() {
@@ -168,13 +169,17 @@ public class LoginCaixa extends javax.swing.JFrame {
         this.jTextField1EmailCaixa = jTextField1EmailCaixa;
     }
 
-    public JTextField getjTextField2SenhaCaixa() {
-        return jTextField2SenhaCaixa;
+    public JPasswordField getjPasswordField1SenhaCaixa() {
+        return jPasswordField1SenhaCaixa;
     }
 
-    public void setjTextField2SenhaCaixa(JTextField jTextField2SenhaCaixa) {
-        this.jTextField2SenhaCaixa = jTextField2SenhaCaixa;
+    public void setjPasswordField1SenhaCaixa(JPasswordField jPasswordField1SenhaCaixa) {
+        this.jPasswordField1SenhaCaixa = jPasswordField1SenhaCaixa;
     }
+
+    
+
+    
 
     
 }
