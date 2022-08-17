@@ -5,7 +5,7 @@
  */
 package Models.DAO;
 
-import Models.Caixa;
+import Models.Gerente;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,33 +13,32 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 /**
- *Classe para objetos do tipo CaixaDAO, onde serão contidos, valores e métodos para o mesmo.
+ *Classe para objetos do tipo GerenteDAO, onde serão contidos, valores e métodos para o mesmo.
  * @author marcus lima
  */
-public class CaixaDAO {
+public class GerenteDAO {
     Connection conn;
     
-    /** @author marcu
-     * Metodo que vai no banco de dados e verifica se o email e senha do caixa estão cadastrados
-     * @param objCaixa
+    /** @author marcus lima
+     * Metodo que vai no banco de ddos e verifica se o email e senha do gerente estão cadastrados
+     * @param objGerente
      * @return rs
      */
-    
-    public ResultSet loginCaixa(Caixa objCaixa){
+    public ResultSet loginGerente(Gerente objGerente){
         
         conn = new BancoDAO().conectaBD();
         
         try {
-           String sql = "SELECT * FROM caixa WHERE email_vendedor = ? AND senha_vendedor = ? ";
+           String sql = "SELECT * FROM gerente WHERE email_gerente = ? AND senha_gerente = ? ";
             PreparedStatement pstm = conn.prepareStatement(sql);
-            pstm.setString(1, objCaixa.getEmailCaixa());
-            pstm.setString(2, objCaixa.getSenhaCaixa());
+            pstm.setString(1, objGerente.getEmailGerente());
+            pstm.setString(2, objGerente.getSenhaGerente());
             
             ResultSet rs = pstm.executeQuery();
             return rs;
             
         } catch (SQLException erro) {
-            JOptionPane.showMessageDialog(null, "CaixaDAO " + erro);
+            JOptionPane.showMessageDialog(null, "GerenteDAO " + erro);
             return null;
         }
     }

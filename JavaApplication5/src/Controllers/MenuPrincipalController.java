@@ -9,8 +9,8 @@ import Views.LoginGerente;
 import Views.MenuPrincipal;
 
 /**
- *
- * @author marcu
+ *Classe para objetos do tipo MenuPrincipalController, onde serão contidos, valores e métodos para o mesmo.
+ * @author marcus lima
  */
 public class MenuPrincipalController {
      private final MenuPrincipal view;
@@ -19,11 +19,30 @@ public class MenuPrincipalController {
         this.view = view;
     }
      
-    
+    /**
+ *metodo que abre a tela de Estoque e fecha a de MenuPrincipal
+ * @author marcus lima
+ */
     public void navegarParaEstoque(){
         LoginGerente loginGerente = new LoginGerente();
         loginGerente.setVisible(true);
         this.view.dispose();
+    }
+    
+    /**
+ *metodo que abre a tela de CadastrarCliente e fecha a de MenuPrincipal
+ * @author marcus lima
+ */
+    public void navegarParaCadastrarCliente(){
+        
+    }
+    
+    /**
+ *metodo que abre a tela de Vendas e fecha a de MenuPrincipal
+ * @author marcus lima
+ */
+    public void navegarParaVendas(){
+        
     }
     
 }

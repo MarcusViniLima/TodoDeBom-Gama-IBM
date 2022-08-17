@@ -5,6 +5,9 @@
  */
 package Views;
 
+import Controllers.LoginGerenteController;
+import javax.swing.JTextField;
+
 /**
  *
  * @author marcu
@@ -14,8 +17,11 @@ public class LoginGerente extends javax.swing.JFrame {
     /**
      * Creates new form LoginGerente
      */
+    
+    private LoginGerenteController controller;
     public LoginGerente() {
         initComponents();
+        this.controller = new LoginGerenteController(this);
     }
 
     /**
@@ -28,9 +34,9 @@ public class LoginGerente extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jTextField1EmailCaixa = new javax.swing.JTextField();
+        jTextField1EmailGerente = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jTextField2SenhaCaixa = new javax.swing.JTextField();
+        jTextField2SenhaGerente = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -44,18 +50,18 @@ public class LoginGerente extends javax.swing.JFrame {
         jLabel1.setText("Usuário");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 100, -1, -1));
 
-        jTextField1EmailCaixa.addActionListener(new java.awt.event.ActionListener() {
+        jTextField1EmailGerente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1EmailCaixaActionPerformed(evt);
+                jTextField1EmailGerenteActionPerformed(evt);
             }
         });
-        getContentPane().add(jTextField1EmailCaixa, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 130, 201, 30));
+        getContentPane().add(jTextField1EmailGerente, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 130, 201, 30));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Senha");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 170, 60, -1));
-        getContentPane().add(jTextField2SenhaCaixa, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 190, 200, 33));
+        getContentPane().add(jTextField2SenhaGerente, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 190, 200, 33));
 
         jButton1.setText("Entrar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -81,12 +87,12 @@ public class LoginGerente extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1EmailCaixaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1EmailCaixaActionPerformed
+    private void jTextField1EmailGerenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1EmailGerenteActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1EmailCaixaActionPerformed
+    }//GEN-LAST:event_jTextField1EmailGerenteActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
+    controller.entrarNoSistema();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -131,7 +137,26 @@ public class LoginGerente extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JTextField jTextField1EmailCaixa;
-    private javax.swing.JTextField jTextField2SenhaCaixa;
+    private javax.swing.JTextField jTextField1EmailGerente;
+    private javax.swing.JTextField jTextField2SenhaGerente;
     // End of variables declaration//GEN-END:variables
+
+    public JTextField getjTextField1EmailGerente() {
+        return jTextField1EmailGerente;
+    }
+
+    public void setjTextField1EmailGerente(JTextField jTextField1EmailGerente) {
+        this.jTextField1EmailGerente = jTextField1EmailGerente;
+    }
+
+    public JTextField getjTextField2SenhaGerente() {
+        return jTextField2SenhaGerente;
+    }
+
+    public void setjTextField2SenhaGerente(JTextField jTextField2SenhaGerente) {
+        this.jTextField2SenhaGerente = jTextField2SenhaGerente;
+    }
+
+
+    
 }

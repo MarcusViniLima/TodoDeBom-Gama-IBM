@@ -6,12 +6,18 @@
 package Views;
 
 import Controllers.EstoqueController;
+import Models.DAO.ProdutoDAO;
+import Models.Produto;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JCheckBox;
 import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -28,7 +34,7 @@ public class Estoque extends javax.swing.JFrame {
     public Estoque() {
         initComponents();
         this.controller = new EstoqueController(this);
-        this.controller.preencharTabela();
+        listarValores();
     }
 
     /**
@@ -66,9 +72,23 @@ public class Estoque extends javax.swing.JFrame {
         jTextField2NomProduto = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         jTextField2CodProduto = new javax.swing.JTextField();
-        jButton3 = new javax.swing.JButton();
+        jButton3buscar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1Produto = new javax.swing.JTable();
+        jPanel3 = new javax.swing.JPanel();
+        jCheckBox2Generico1 = new javax.swing.JCheckBox();
+        jLabel10 = new javax.swing.JLabel();
+        jTextField1NomeProduto1 = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        jTextField2CodigoProduto1 = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
+        jFormattedTextField1ValorProduto1 = new javax.swing.JFormattedTextField();
+        jLabel13 = new javax.swing.JLabel();
+        jTextField3MarcaProduto1 = new javax.swing.JTextField();
+        jLabel14 = new javax.swing.JLabel();
+        jTextField4QuantidadeProduto1 = new javax.swing.JTextField();
+        jCheckBox1Medicamento1 = new javax.swing.JCheckBox();
+        jButton5 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
@@ -87,7 +107,7 @@ public class Estoque extends javax.swing.JFrame {
         jPanel1.add(jTextField4QuantidadeProduto, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, 160, 30));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel6.setText("Quantidadedo produto:");
+        jLabel6.setText("Quantidade do produto:");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, -1, -1));
         jPanel1.add(jTextField3MarcaProduto, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 180, 30));
 
@@ -124,6 +144,11 @@ public class Estoque extends javax.swing.JFrame {
 
         jButton4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jButton4.setText("Cadastrar");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 60, 140, 50));
 
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -155,15 +180,20 @@ public class Estoque extends javax.swing.JFrame {
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel9.setText("Código do produto:");
 
-        jButton3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton3.setText("Buscar");
+        jButton3buscar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jButton3buscar.setText("Buscar");
+        jButton3buscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3buscarActionPerformed(evt);
+            }
+        });
 
         jTable1Produto.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Código", "Nome", "Marca", "Quantidade", "Valor"
+                "Código", "Nome", "Marca", "Quantidade Total", "Quantidade Atual", "Quantidade Vendida", "Valor Total", "Desconto", "Valor Atual"
             }
         ));
         jTable1Produto.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -183,7 +213,7 @@ public class Estoque extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel9)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton3buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(38, 38, 38))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -203,15 +233,142 @@ public class Estoque extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton3buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jTextField2CodProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(69, 69, 69))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26))
         );
 
         jTabbedPane1Guias.addTab("Consulta de produtos", jPanel2);
+
+        jCheckBox2Generico1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jCheckBox2Generico1.setText("Genérico");
+        jCheckBox2Generico1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox2Generico1ActionPerformed(evt);
+            }
+        });
+
+        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel10.setText("Nome do produto:");
+
+        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel11.setText("Código do produto:");
+
+        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel12.setText("Valor do produto:");
+
+        jFormattedTextField1ValorProduto1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
+        jFormattedTextField1ValorProduto1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jFormattedTextField1ValorProduto1ActionPerformed(evt);
+            }
+        });
+
+        jLabel13.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel13.setText("Marca do produto:");
+
+        jTextField3MarcaProduto1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField3MarcaProduto1ActionPerformed(evt);
+            }
+        });
+
+        jLabel14.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel14.setText("Quantidade do produto:");
+
+        jTextField4QuantidadeProduto1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField4QuantidadeProduto1ActionPerformed(evt);
+            }
+        });
+
+        jCheckBox1Medicamento1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jCheckBox1Medicamento1.setText("Medicamento");
+
+        jButton5.setText("Editar");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel10)
+                            .addComponent(jTextField1NomeProduto1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTextField3MarcaProduto1, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel14))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jCheckBox1Medicamento1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jCheckBox2Generico1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel11)
+                            .addComponent(jTextField2CodigoProduto1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel13))
+                        .addGap(48, 48, 48)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(jLabel12)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(jFormattedTextField1ValorProduto1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
+                                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(34, 34, 34))))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jTextField4QuantidadeProduto1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel10)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextField1NomeProduto1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel11)
+                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jTextField2CodigoProduto1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel13)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextField3MarcaProduto1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel14))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jFormattedTextField1ValorProduto1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jCheckBox1Medicamento1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jCheckBox2Generico1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextField4QuantidadeProduto1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(68, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1Guias.addTab("Atualizar Produto", jPanel3);
 
         getContentPane().add(jTabbedPane1Guias, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 560, 340));
 
@@ -239,6 +396,17 @@ public class Estoque extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jFormattedTextField1ValorProdutoActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        String message = "Deseja realmente apagar esse produto?";
+        String title = "Confirmação";
+        //Exibe caixa de dialogo (veja figura) solicitando confirmação ou não.
+        //Se o usuário clicar em "Sim" retorna 0 pra variavel reply, se informado não retorna 1
+        int reply = JOptionPane.showConfirmDialog(null, message, title, JOptionPane.YES_NO_OPTION);
+        if (reply == JOptionPane.YES_OPTION){
+            controller.deletar();
+        }   // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     private void jCheckBox2GenericoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox2GenericoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jCheckBox2GenericoActionPerformed
@@ -247,16 +415,41 @@ public class Estoque extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField4QuantidadeProdutoActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-     String message = "Deseja realmente apagar esse produto?";
-      String title = "Confirmação";
-      //Exibe caixa de dialogo (veja figura) solicitando confirmação ou não. 
-      //Se o usuário clicar em "Sim" retorna 0 pra variavel reply, se informado não retorna 1
-      int reply = JOptionPane.showConfirmDialog(null, message, title, JOptionPane.YES_NO_OPTION);
-      if (reply == JOptionPane.YES_OPTION){
-          controller.deletar();
-      }   // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void jFormattedTextField1ValorProduto1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField1ValorProduto1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jFormattedTextField1ValorProduto1ActionPerformed
+
+    private void jTextField4QuantidadeProduto1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4QuantidadeProduto1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField4QuantidadeProduto1ActionPerformed
+
+    private void jCheckBox2Generico1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox2Generico1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCheckBox2Generico1ActionPerformed
+
+    private void jTextField3MarcaProduto1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3MarcaProduto1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField3MarcaProduto1ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        try {
+            this.controller.atualizarProduto();        // TODO add your handling code here:
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Estoque.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton3buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3buscarActionPerformed
+this.controller.buscar();        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3buscarActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        try {
+            this.controller.cadastrar();        // TODO add your handling code here:
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Estoque.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -300,12 +493,21 @@ public class Estoque extends javax.swing.JFrame {
     private javax.swing.ButtonGroup buttonGroup4;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton3buscar;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JCheckBox jCheckBox1Medicamento;
+    private javax.swing.JCheckBox jCheckBox1Medicamento1;
     private javax.swing.JCheckBox jCheckBox2Generico;
+    private javax.swing.JCheckBox jCheckBox2Generico1;
     private javax.swing.JFormattedTextField jFormattedTextField1ValorProduto;
+    private javax.swing.JFormattedTextField jFormattedTextField1ValorProduto1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -316,15 +518,20 @@ public class Estoque extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1Guias;
     private javax.swing.JTable jTable1Produto;
     private javax.swing.JTextField jTextField1NomeProduto;
+    private javax.swing.JTextField jTextField1NomeProduto1;
     private javax.swing.JTextField jTextField2CodProduto;
     private javax.swing.JTextField jTextField2CodigoProduto;
+    private javax.swing.JTextField jTextField2CodigoProduto1;
     private javax.swing.JTextField jTextField2NomProduto;
     private javax.swing.JTextField jTextField3MarcaProduto;
+    private javax.swing.JTextField jTextField3MarcaProduto1;
     private javax.swing.JTextField jTextField4QuantidadeProduto;
+    private javax.swing.JTextField jTextField4QuantidadeProduto1;
     // End of variables declaration//GEN-END:variables
 
     public JCheckBox getjCheckBox1Medicamento() {
@@ -415,6 +622,85 @@ public class Estoque extends javax.swing.JFrame {
         this.jTabbedPane1Guias = jTabbedPane1Guias;
     }
 
+    public JCheckBox getjCheckBox1Medicamento1() {
+        return jCheckBox1Medicamento1;
+    }
+
+    public void setjCheckBox1Medicamento1(JCheckBox jCheckBox1Medicamento1) {
+        this.jCheckBox1Medicamento1 = jCheckBox1Medicamento1;
+    }
+
+    public JCheckBox getjCheckBox2Generico1() {
+        return jCheckBox2Generico1;
+    }
+
+    public void setjCheckBox2Generico1(JCheckBox jCheckBox2Generico1) {
+        this.jCheckBox2Generico1 = jCheckBox2Generico1;
+    }
+
+    public JFormattedTextField getjFormattedTextField1ValorProduto1() {
+        return jFormattedTextField1ValorProduto1;
+    }
+
+    public void setjFormattedTextField1ValorProduto1(JFormattedTextField jFormattedTextField1ValorProduto1) {
+        this.jFormattedTextField1ValorProduto1 = jFormattedTextField1ValorProduto1;
+    }
+
+    public JTextField getjTextField1NomeProduto1() {
+        return jTextField1NomeProduto1;
+    }
+
+    public void setjTextField1NomeProduto1(JTextField jTextField1NomeProduto1) {
+        this.jTextField1NomeProduto1 = jTextField1NomeProduto1;
+    }
+
+    public JTextField getjTextField2CodigoProduto1() {
+        return jTextField2CodigoProduto1;
+    }
+
+    public void setjTextField2CodigoProduto1(JTextField jTextField2CodigoProduto1) {
+        this.jTextField2CodigoProduto1 = jTextField2CodigoProduto1;
+    }
+
+    public JTextField getjTextField3MarcaProduto1() {
+        return jTextField3MarcaProduto1;
+    }
+
+    public void setjTextField3MarcaProduto1(JTextField jTextField3MarcaProduto1) {
+        this.jTextField3MarcaProduto1 = jTextField3MarcaProduto1;
+    }
+
+    public JTextField getjTextField4QuantidadeProduto1() {
+        return jTextField4QuantidadeProduto1;
+    }
+
+    public void setjTextField4QuantidadeProduto1(JTextField jTextField4QuantidadeProduto1) {
+        this.jTextField4QuantidadeProduto1 = jTextField4QuantidadeProduto1;
+    }
+    /** metodo que preenche a tabela de produtos assim que a tela de estoque é inicializada;
+     * @uthor marcus lima
+     * 
+     */
+    
+private void listarValores() {
+            try {
+                ProdutoDAO objProduto = new ProdutoDAO();
+
+                DefaultTableModel model;
+                model = (DefaultTableModel) this.getjTable1Produto().getModel();
+                model.setNumRows(0);
+
+                ArrayList<Produto> listaProdutos = objProduto.listarProduto();
+
+                listaProdutos.stream().forEach((listaProduto) -> {
+                     model.addRow(new Object[]{listaProduto.getId(), listaProduto.getNomeProduto(),listaProduto.getMarcaProduto(),listaProduto.getQuantidadeProduto() ,listaProduto.getQuantidadeAtualProduto(),listaProduto.getQuantidadeVendidaProduto() , listaProduto.getValorProduto(), listaProduto.getValorDescontoProduto(), listaProduto.getValorAtualProduto()});
+                });
+
+            } catch (Exception erro) {
+                JOptionPane.showMessageDialog(null, "Estoque" + erro.getMessage());
+            }
+            
+    }
 
 
 

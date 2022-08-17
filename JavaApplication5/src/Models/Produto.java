@@ -6,7 +6,7 @@
 package Models;
 
 /**
- *
+ * 
  * @author marcu
  */
 public class Produto {
@@ -15,7 +15,11 @@ public class Produto {
     private String nomeProduto;
     private String marcaProduto; 
     private double valorProduto;
+    private double valorDescontoProduto;
+    private double valorAtualProduto;
     private int quantidadeProduto;
+    private int quantidadeAtualProduto;
+    private int quantidadeVendidaProduto;
     private boolean flag_medicamento;
     private boolean flag_generico;
 
@@ -76,6 +80,38 @@ public class Produto {
 
     public void setFlag_generico(boolean flag_generico) {
         this.flag_generico = flag_generico;
+    }
+
+    public double getValorDescontoProduto() {
+        return valorDescontoProduto;
+    }
+
+    public void setValorDescontoProduto(double valorDescontoProduto) {
+        this.valorDescontoProduto = valorDescontoProduto;
+    }
+
+    public double getValorAtualProduto() {
+        return valorAtualProduto;
+    }
+
+    public void setValorAtualProduto(double valorAtualProduto) {
+        this.valorAtualProduto = valorAtualProduto;
+    }
+
+    public int getQuantidadeAtualProduto() {
+        return quantidadeAtualProduto;
+    }
+
+    public void setQuantidadeAtualProduto(int quantidadeAtualProduto) {
+        this.quantidadeAtualProduto = quantidadeAtualProduto;
+    }
+
+    public int getQuantidadeVendidaProduto() {
+        return quantidadeVendidaProduto;
+    }
+
+    public void setQuantidadeVendidaProduto(int quantidadeVendidaProduto) {
+        this.quantidadeVendidaProduto = quantidadeVendidaProduto;
     }
     
     

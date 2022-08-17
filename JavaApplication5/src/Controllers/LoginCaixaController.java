@@ -16,8 +16,8 @@ import javax.swing.JOptionPane;
 
 
 /**
- *
- * @author marcu
+ *Classe para objetos do tipo LoginCaixaController, onde serão contidos, valores e métodos para o mesmo.
+ * @author marcus lima
  */
 public class LoginCaixaController {
     
@@ -30,8 +30,9 @@ public class LoginCaixaController {
     }
     
     public void entrarNoSistema(){
-        //pegar usuario da view
-        //pesquisar usuario do banco
+        /** @author marcus lima
+     * recebe um modelo de caixa e verifica se existe no banco, se existir, libera entrada no sistema e dá acesso a tela de menu
+     */
         try {
             Caixa caixa = helper.obterModelo();
         CaixaDAO caixaDAO = new CaixaDAO();

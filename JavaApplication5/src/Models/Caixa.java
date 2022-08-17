@@ -11,11 +11,20 @@ package Models;
  */
 public class Caixa {
     
+    private int idCaixa;
     private String nomeCaixa;
-    private String enderecoCaixa;
     private String telefoneCaixa;
     private String emailCaixa;
     private String senhaCaixa;
+    private Gerente idGerente;
+
+    public Gerente getIdGerente() {
+        return idGerente;
+    }
+
+    public void setIdGerente(Gerente idGerente) {
+        this.idGerente = idGerente;
+    }
 
     public Caixa() {
     }
@@ -26,14 +35,6 @@ public class Caixa {
 
     public void setNomeCaixa(String nomeCaixa) {
         this.nomeCaixa = nomeCaixa;
-    }
-
-    public String getEnderecoCaixa() {
-        return enderecoCaixa;
-    }
-
-    public void setEnderecoCaixa(String enderecoCaixa) {
-        this.enderecoCaixa = enderecoCaixa;
     }
 
     public String getTelefoneCaixa() {
@@ -58,6 +59,14 @@ public class Caixa {
 
     public void setSenhaCaixa(String senhaCaixa) {
         this.senhaCaixa = senhaCaixa;
+    }
+
+    public int getIdCaixa() {
+        return idCaixa;
+    }
+
+    public void setIdCaixa(int idCaixa) {
+        this.idCaixa = idCaixa;
     }
     
     
