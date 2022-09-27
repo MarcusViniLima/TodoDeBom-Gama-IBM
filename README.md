@@ -20,23 +20,27 @@ Repositório para a implementação do desafio 01 do programa 'if black then cod
   c. Listar os endpoints no README.md\
   d. Testes automatizados, podem ser testes unitários ou testes de integração;
   
-  A avaliação será feita a partir da **documentação da aplicação**.\
-  EndPoints - Estoque
-  1. src/DAO/ProdutoDAO/cadastrarProduto
-  2. src/DAO/ProdutoDAO/atualizarProduto
-  3. src/DAO/ProdutoDAO/listarProduto
-  4. src/DAO/ProdutoDAO/deletarProduto
-  5. src/DAO/ProdutoDAO/buscarProdutoIdNome
-  1. src/DAO/PedidoDAO/cadastrarPedido
-  2. src/DAO/PedidoDAO/listarPedidos
-  3. src/DAO/PedidoDAO/listarPedidosIdCliente
-  4. src/DAO/PedidoDAO/listarPedidosIdProduto
-  5. src/DAO/PedidoDAO/listarPedidosIdVendedor
-  6. src/DAO/PedidoDAO/deletarPedido
-  1. src/DAO/PedidoDAO/ inserirCliente
-  2. src/DAO/PedidoDAO/listarClientes
-  3. src/DAO/PedidoDAO/alterarCliente
-  4. src/DAO/PedidoDAO/excluirCliente
-  5. src/DAO/PedidoDAO/listarClientePorNome
+  ## Como executar a aplicação
+  Antes de iniciar a aplicação, é necessário criar um banco de dados no MySQL chamado **pescola** na porta **3306**, no **localhost**. Configure seus usuário e senha no arquivo `src/Models/DAO/BancoDAO.java`. E use o script sql disponibilizado [aqui] para criar e popular as tabelas. A seguir, gere o executável da aplicação (arquivo.jar).
+   
+   ## Tecnologias e ferramentas utilizadas
+- Java
+- Programação Orientada a Objetos
+- ArrayList
+- Zoom e Google Meet
+- Mysql
+- Java Swing
+- NetBEans
+
+## Conhecimentos adquiridos e/ou aprimorados
+- APIs
+- MVC - camadas Model, View e Controller
+- Banco de dados
+- Desing
+- NetBeans
+
+## Authors
+Marcus Vinicius Lameu Lima - [@MarcusViniLima](https://github.com/MarcusViniLima)
+
 
   
